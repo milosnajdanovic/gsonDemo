@@ -7,7 +7,7 @@ public class TestBase {
 
     @BeforeSuite
     public static void initializeTest() {
-        RestAssured.baseURI = "https://test-api.k6.io/";
+        RestAssured.baseURI = "https://reqres.in/";
     }
 
 }
