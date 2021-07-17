@@ -1,4 +1,4 @@
-package com.htec.models.users;
+package com.htec.models.users.create;
 
 import com.google.gson.annotations.SerializedName;
 
