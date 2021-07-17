@@ -12,7 +12,7 @@ import java.lang.reflect.Type;
 public class GsonSetup {
 
     //method will be reused to convert any json response into class
-    public static <T> T parseResponse(Response jsonResponse, Class<T> classOfT) {
+    public static <T> T convertJsonToClass(Response jsonResponse, Class<T> classOfT) {
         //create empty string to store json
         //use try and catch block to handle exception
         try {
