@@ -10,7 +10,7 @@ import org.testng.asserts.SoftAssert;
 
 import java.time.LocalDateTime;
 
-public class RegisterUserTests extends TestBase {
+public class UserTests extends TestBase {
 
     @Test
     public void verifyCanCreateUser() {
