@@ -13,12 +13,9 @@ public class GsonSetup {
 
     //method will be reused to convert any json response into class
     public static <T> T convertJsonToClass(Response jsonResponse, Class<T> classOfT) {
-        //create empty string to store json
-        String prettyJsonString = "";
-
         //use try and catch block to handle exception
         try {
-            prettyJsonString = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(jsonResponse.body().asString()));
+            String prettyJsonString = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(jsonResponse.body().asString()));
             //if you want to make sure the response is as expected in model, one way to go is to assert status code
             if (jsonResponse.getStatusCode() >= 400 && jsonResponse.getStatusCode() < 600) {
                 //You can use TestNG assert to stop execution and print out the error that was received
