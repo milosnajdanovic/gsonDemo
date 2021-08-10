@@ -9,8 +9,11 @@ import com.htec.setup.GsonSetup;
 import com.htec.setup.RestAssuredApiRequests;
 import org.testng.Assert;
 
+
 public class UserAPI {
 
+    //We created a function that combines RestAssured and Gson functions
+    //We can send a Java Object and get a response as a Java Object with libraries taking care of the JSON conversion
     public static CreateUserResponse registerUser(CreateUserRequest createUserRequest) {
         return GsonSetup.convertJsonToClass
                 (RestAssuredApiRequests.post(createUserRequest, "api/users"), CreateUserResponse.class);
@@ -22,20 +25,5 @@ public class UserAPI {
 
     public static GetUserById fakeResource() {
         return GsonSetup.convertJsonToClass(RestAssuredApiRequests.get("api/made_up"), GetUserById.class);
-    }
-
-    public static ListUsersResponse getListOfUsers() {
-        return GsonSetup.convertJsonToClass(RestAssuredApiRequests.get("api/users/"), ListUsersResponse.class);
-    }
-
-    public static Data findUserByIdFromTheList(Integer userId) {
-        ListUsersResponse listUsersResponse = getListOfUsers();
-        for (int i = 0; i < listUsersResponse.getData().size(); i++) {
-            if (listUsersResponse.getData().get(i).getId().equals(userId)) {
-                return listUsersResponse.getData().get(i);
-            }
-        }
-        Assert.fail("User with id: " + userId + " was not found in the list");
-        return null;
     }
 }

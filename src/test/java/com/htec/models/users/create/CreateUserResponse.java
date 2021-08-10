@@ -27,6 +27,7 @@ public class CreateUserResponse implements Serializable
         this.createdAt = createdAt;
     }
 
+    //We will use this method to build an expected response as a Java Object in order to compare it with the actual response
     public static CreateUserResponse parseCreatedUser(CreateUserRequest createUserRequest) {
         CreateUserResponse createUserResponse = new CreateUserResponse();
         createUserResponse.setName(createUserRequest.getName());

@@ -30,16 +30,6 @@ public class Data implements Serializable {
         this.avatar = avatar;
     }
 
-    public static Data parseUserData(Data userById) {
-        Data data = new Data();
-        data.setId(userById.getId());
-        data.setEmail(userById.getEmail());
-        data.setFirstName(userById.getFirstName());
-        data.setLastName(userById.getLastName());
-        data.setAvatar(userById.getAvatar());
-        return data;
-    }
-
     public Integer getId() {
         return id;
     }

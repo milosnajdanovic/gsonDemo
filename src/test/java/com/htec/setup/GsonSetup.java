@@ -11,22 +11,22 @@ import java.lang.reflect.Type;
 
 public class GsonSetup {
 
-    //method will be reused to convert any json response into class
+    //This method will be used to convert any JSON response into a Java Class Object
     public static <T> T convertJsonToClass(Response jsonResponse, Class<T> classOfT) {
-        //use try and catch block to handle exception
+        //We will use the Try/Catch block to handle the exception
         try {
             String prettyJsonString = new GsonBuilder().setPrettyPrinting().create().toJson(new JsonParser().parse(jsonResponse.body().asString()));
-            //if you want to make sure the response is as expected in model, one way to go is to assert status code
-            if (jsonResponse.getStatusCode() >= 400 && jsonResponse.getStatusCode() < 600) {
-                //You can use TestNG assert to stop execution and print out the error that was received
-                Assert.fail(classOfT + "\n returned error: " + prettyJsonString);
+            //We want to make sure the response is as expected in the model — one way to go is to assert the status code
+            if (jsonResponse.getStatusCode() >= 400) {
+                //We will use the TestNG Assert to stop test execution and print out the error that was received
+                Assert.fail(classOfT + "\n returned status code: " + jsonResponse.getStatusCode() + " and error: " + prettyJsonString);
             } else {
-                //return json converted into object (your class)
+                //Return JSON converted into an Object
                 return new Gson().fromJson(prettyJsonString, (Type) classOfT);
             }
         } catch (JsonSyntaxException|IllegalStateException e) {
-            //return exception api returned during serialization
-            Assert.fail(classOfT + "\n returned serialization exception error: " + e.getMessage());
+            //Return the exception that occurred during the JSON serialization
+            Assert.fail(classOfT + "\n returned IllegalStateException: " + e.getMessage());
         }
         return null;
     }
